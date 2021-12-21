@@ -12,21 +12,20 @@ services:
       nofile:
         soft: 262144
         hard: 262144
-    # Optionally store the clickhouse data outside of the container 
+    # Optionally store the clickhouse data outside of the container
     # volumes:
     #   - ./ch_db_data:/var/lib/clickhouse/
     #   - ./ch_db_logs:/val/log/clickhouse-server/
 
   grafana:
-    build:
-      context: grafana
+    image: grafana/grafana-oss:latest
     volumes:
       - ./grafana/grafana-clickhouse-datasource.yaml:/etc/grafana/provisioning/datasources/grafana-clickhouse-datasource.yaml
       - ./grafana/grafana-dashboards.yaml:/etc/grafana/provisioning/dashboards/grafana-dashboards.yaml
       - ./grafana/dashboards/:/var/lib/grafana/dashboards/
 
     environment:
-      - GF_INSTALL_PLUGINS=grafana-piechart-panel,grafana-worldmap-panel
+      - GF_INSTALL_PLUGINS=vertamedia-clickhouse-datasource
       - GF_LOG_LEVEL=warning
     ports:
       - 3000:3000
