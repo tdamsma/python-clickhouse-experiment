@@ -60,7 +60,7 @@ if __name__ == "__main__":
     while True:
         sleep(randint(0, 2))
         t1 = time()
-        time_key_value_array = generate_data(
+        time_key_value_array: pd.DataFrame = generate_data(
             start=t_prev, end=time(), n_columns=n_columns, n_rows=n_rows
         )
         t2 = time()

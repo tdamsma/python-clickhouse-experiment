@@ -1,3 +1,4 @@
 clickhouse_driver[lz4,zstd,numpy]
 pandas
 numpy
+matplotlib
